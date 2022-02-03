@@ -6,7 +6,7 @@ public class Map {
     //private int azu_Mountains;
 
 // declaring 2d 5x5 array
-    int[][] azu_mountains  = new array [5][5];
+    int[][] azu_mountains  = new int [5][5];
 
 //    public void infinateMovement (int [][] characterPosition){
 //
