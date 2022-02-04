@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class WorldMap {
 
     private int[][] worldMap = new int[3][3];
-    private Hunter hero;// needed to instantiate hero on map creation
+    private Hunter hunter;// needed to instantiate hero on map creation
     private Story story;
     private Food food; //need to make food available on map creation
     private Compass compass;
@@ -23,48 +23,103 @@ public class WorldMap {
     public WorldMap() {
 
         story = new Story();
-        hero = new Hunter();
+        hunter = new Hunter();
         food = new Food();
         int[] currentPos = new int[2];
         int[] Sonlocation = new int[2];
 
-        do{
-        hero.setCharacterPosition(0,0);
-
+        //Setting starting position of character
+        hunter.setCharacterPosition(0,0);
+        //INTRO TO STORY
+        System.out.println(story.intro());
 
         // Randomly placing the child on the map
         int randomX = (int) (Math.random() * 3) + 1;
         int randomY = (int) (Math.random() * 3) + 1;
         Sonlocation[0] = randomX;
         Sonlocation[1] = randomY;
-        //System.out.println("SonsLocation X: "+Sonlocation[0]);
-        //System.out.println("SonsLocation Y: " +Sonlocation[1]);
 
-        System.out.println(story.intro());
+
+
+        System.out.println("X value is: "+randomX +
+                "\nY value is: "+ randomY);
+
+        do{
 
         System.out.println("Which direction would you like to go? use (W A S D )");
-        String chosenDirection = userInput.nextLine().toUpperCase();
-        System.out.println("chosenDirection is: " + chosenDirection);
+        String chosenDirection =" ";
+        chosenDirection = userInput.nextLine().toUpperCase();
+
 
             switch(chosenDirection){
                 case "W":
-                    hero.move(Compass.NORTH);
-                    hero.getCurrentPosXY();
+                    hunter.move(Compass.NORTH);
+                    hunter.getCurrentPosXY();
+                    System.out.println(hunter.toString());
                     break;
                 case "S":
-                    hero.move(Compass.SOUTH);
+                    hunter.move(Compass.SOUTH);
+                    hunter.getCurrentPosXY();
+                    System.out.println(hunter.toString());
                     break;
                 case "A":
-                    hero.move(Compass.WEST);
-                    hero.eatFood(food.deer());
+                    hunter.move(Compass.WEST);
+                    hunter.getCurrentPosXY();
+                    hunter.eatFood(food.deer());
+                    System.out.println(hunter.toString());
                     break;
                 case "D":
-                    hero.move(Compass.EAST);
+                    hunter.move(Compass.EAST);
+                    hunter.getCurrentPosXY();
+                    System.out.println(hunter.toString());
                     break;
                 default:
-                    message = "That's not direction";
+                    message = "That's not a direction";
+                    System.out.println(message);
             }
-            System.out.println(message);
+            String xPostionString = String.valueOf(hunter.getPositionX());
+            String yPositionString = String.valueOf(hunter.getPositionY());
+            String xyPositionString =xPostionString+yPositionString;
+
+            hunter.getCurrentPosXY();
+
+            if( currentPos[0]== Sonlocation[0] && currentPos[1] == Sonlocation[1]){
+                System.out.println("You've found your son!!");
+            }else{
+
+            //Switch statement to tell story
+            switch(xyPositionString){
+
+                case "00":
+                    System.out.println(story.position0_0());
+                    break;
+                case"01":
+                    System.out.println(story.position0_1());
+                    break;
+                case"02":
+                    System.out.println(story.position0_2());
+                    break;
+                case"03":
+                    System.out.println(story.position0_3());
+                    break;
+                case "10":
+                    System.out.println(story.position1_0());
+                    break;
+                case"11":
+                    System.out.println(story.position1_1());
+                    break;
+                case"12":
+                    System.out.println(story.position1_2());
+                    break;
+                case"13":
+                    System.out.println(story.position1_3());
+                    break;
+                default:
+                    message = "OOH....The Story for this location in underdevelopment please come back later";
+                    System.out.println(message);
+            }
+            }
+
 }
     while (currentPos[0] != Sonlocation[0] && currentPos[1] != Sonlocation[1]);
 

@@ -9,12 +9,10 @@ public class Hunter {
 
     private double health;
     private double power_Level;
-    private String name;
     private int[] characterPosition = new int[2];
     private int[] currentPos = new int[2];
     private int posX=0;
     private int posY=0;
-    private Compass compass; // to be used for moving
 
     //Constructor
     public Hunter(){
@@ -47,7 +45,7 @@ public class Hunter {
         } else if(Compass.EAST.equals(chosenDirection) && posX ==3){
             return posX =0;
 
-        } else if(Compass.WEST.equals(chosenDirection) && posX <=1){
+        } else if(Compass.WEST.equals(chosenDirection) && posX >=1){
             return posX =posX -1;
 
         } else{
