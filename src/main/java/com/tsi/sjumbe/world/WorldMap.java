@@ -28,7 +28,7 @@ public class WorldMap {
         hunter = new Hunter();
         food = new Food();
         int[] currentPos = new int[2];
-        int[] Sonlocation = new int[2];
+        int[] Sonslocation = new int[2];
 
         //Setting starting position of character
         hunter.setCharacterPosition(0,0);
@@ -38,22 +38,19 @@ public class WorldMap {
         // Randomly placing the child on the map
         int randomX = (int) (Math.random() * 3) + 1;
         int randomY = (int) (Math.random() * 3) + 1;
-        Sonlocation[0] = randomX;
-        Sonlocation[1] = randomY;
-        int[] trial = {1,2};
-        int[] other ={1,2};
+        Sonslocation[0] = randomX;
+        Sonslocation[1] = randomY;
 
-        System.out.println("Arrays is not working "+ Arrays.equals(trial,other));
 
 
         System.out.println("X value is: "+randomX +
                 "\nY value is: "+ randomY);
 
         do{
-
         System.out.println("Which direction would you like to go? use (W A S D )");
         String chosenDirection =" ";
         chosenDirection = userInput.nextLine().toUpperCase();
+
 
 
             switch(chosenDirection){
@@ -82,14 +79,13 @@ public class WorldMap {
                     message = "That's not a direction";
                     System.out.println(message);
             }
+            //Converting player position into a string to be used for story switch case
             String xPostionString = String.valueOf(hunter.getPositionX());
             String yPositionString = String.valueOf(hunter.getPositionY());
             String xyPositionString =xPostionString+yPositionString;
 
-            hunter.getCurrentPosXY();
-            System.out.println(( Arrays.equals(Sonlocation, currentPos)));
-
-            if( Arrays.equals(Sonlocation, currentPos)==true){
+            //If statement checking if player has found child's location
+            if( Arrays.equals(Sonslocation, hunter.getCurrentPosXY())){
                 System.out.println("You've found your son!!");
             }else{
 
@@ -127,7 +123,7 @@ public class WorldMap {
             }
 
 }
-    while (Arrays.equals(Sonlocation, currentPos)==false);
+    while (Arrays.equals(Sonslocation, hunter.getCurrentPosXY())==false);
 
 
 
