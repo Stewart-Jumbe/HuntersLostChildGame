@@ -3,6 +3,7 @@ package com.tsi.sjumbe.world;
 import com.tsi.sjumbe.characters.Hunter;
 
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class WorldMap {
 
@@ -14,6 +15,7 @@ public class WorldMap {
     private String message;
 
     Scanner userInput;
+
 
     {
         userInput = new Scanner(System.in);
@@ -38,7 +40,10 @@ public class WorldMap {
         int randomY = (int) (Math.random() * 3) + 1;
         Sonlocation[0] = randomX;
         Sonlocation[1] = randomY;
+        int[] trial = {1,2};
+        int[] other ={1,2};
 
+        System.out.println("Arrays is not working "+ Arrays.equals(trial,other));
 
 
         System.out.println("X value is: "+randomX +
@@ -82,8 +87,9 @@ public class WorldMap {
             String xyPositionString =xPostionString+yPositionString;
 
             hunter.getCurrentPosXY();
+            System.out.println(( Arrays.equals(Sonlocation, currentPos)));
 
-            if( currentPos[0]== Sonlocation[0] && currentPos[1] == Sonlocation[1]){
+            if( Arrays.equals(Sonlocation, currentPos)==true){
                 System.out.println("You've found your son!!");
             }else{
 
@@ -121,7 +127,7 @@ public class WorldMap {
             }
 
 }
-    while (currentPos[0] != Sonlocation[0] && currentPos[1] != Sonlocation[1]);
+    while (Arrays.equals(Sonlocation, currentPos)==false);
 
 
 
